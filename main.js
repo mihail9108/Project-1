@@ -1,4 +1,4 @@
-let d = document, container = d.querySelector('#container'), arr = [], box = [], list = [];
+let d = document, container = d.querySelector('#container'), arr = [], boxes = [], list = [];
 
 let xmlhttp = new XMLHttpRequest();
 xmlhttp.onreadystatechange = function() {
@@ -33,7 +33,7 @@ function superFunc(data) {
             h3.innerHTML = el.name;
             div.appendChild(h3);
             container.appendChild(div);
-            box[index] = div;
+            boxes[index] = div;
         } else {
             list[index] = {'parent_id': el.parent_id, 'name': el.name};
         }
@@ -42,11 +42,11 @@ function superFunc(data) {
 
 function categoryFunc(data) {
     for (let x in list) {
-        if (typeof box[list[x].parent_id] != 'undefined') {
+        if (typeof boxes[list[x].parent_id] != 'undefined') {
             let ul = d.createElement('ul'), h4 = d.createElement('h4');
             h4.innerHTML = list[x].name;
-            box[list[x].parent_id].appendChild(h4);
-            box[list[x].parent_id].appendChild(ul);
+            boxes[list[x].parent_id].appendChild(h4);
+            boxes[list[x].parent_id].appendChild(ul);
             data[x] = ul;
         } else {
             arr[x] = {'parent_id': list[x].parent_id, 'name': list[x].name};
