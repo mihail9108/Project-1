@@ -27,17 +27,17 @@ function createTreeDom(data) {
 }
 
 function superFunc(data) {
-    for (let x in data) {
-        if (typeof data[data[x].parent_id] == 'undefined') {
+    data.forEach((el, index) =>  {
+        if (typeof data[el.parent_id] == 'undefined') {
             let div = d.createElement('div'), h3 = d.createElement('h3');
-            h3.innerHTML = data[x].name;
+            h3.innerHTML = el.name;
             div.appendChild(h3);
             container.appendChild(div);
-            box[x] = div;
+            box[index] = div;
         } else {
-            list[x] = {'parent_id': data[x].parent_id, 'name': data[x].name};
+            list[index] = {'parent_id': el.parent_id, 'name': el.name};
         }
-    }
+    });
 }
 
 function categoryFunc(data) {
