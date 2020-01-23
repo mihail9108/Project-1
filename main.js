@@ -31,7 +31,7 @@ function createTreeDom(data) {
 
 function superFunc(data) {
     data.forEach((el, index) =>  {
-        if (typeof data[el.parent_id] == 'undefined') {
+        if (data[el.parent_id]) {
             let div = d.createElement('div'), h3 = d.createElement('h3');
             h3.innerHTML = el.name;
             div.appendChild(h3);
@@ -45,7 +45,7 @@ function superFunc(data) {
 
 function categoryFunc(data) {
     for (let x in list) {
-        if (typeof boxes[list[x].parent_id] != 'undefined') {
+        if (boxes[list[x].parent_id]) {
             let ul = d.createElement('ul'), h4 = d.createElement('h4');
             h4.innerHTML = list[x].name;
             boxes[list[x].parent_id].appendChild(h4);
