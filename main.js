@@ -1,15 +1,18 @@
-let d = document, container = d.querySelector('#container'), arr = [], boxes = [], list = [];
+let d = document,
+    container = d.querySelector('#container'),
+    arr = [],
+    boxes = [],
+    list = [];
 
-let xmlhttp = new XMLHttpRequest();
-xmlhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-        let data = JSON.parse(this.responseText);
-        JSON.stringify(data);
+$.get('http://test1.web-gu.ru/')
+    .then(data => {
         console.log(data);
 
         createTree(container, data);
-    }
-};
+    })
+    .fail(e => {
+        console.log(e)
+    });
 
 function createTree(container, data) {
     container.append(createTreeDom(data));
@@ -61,8 +64,3 @@ function itemsFunc(data) {
         data[arr[x].parent_id].appendChild(li);
     }
 }
-
-
-xmlhttp.open("GET", 'http://test1.web-gu.ru/', true);
-xmlhttp.send();
-
